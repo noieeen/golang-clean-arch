@@ -43,6 +43,6 @@ func (r *userRepo) Register(req *entities.UsersRegisterReq) (*entities.UsersRegi
 		}
 
 	}
-	defer r.Db.Close()
+	defer rows.Close()
 	return user, nil
 }
