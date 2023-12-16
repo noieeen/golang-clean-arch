@@ -7,12 +7,12 @@ type Configs struct {
 
 type Fiber struct {
 	Host string
-	Post string
+	Port string
 }
 
 type PostgreSQL struct {
 	Host     string
-	Post     string
+	Port     string
 	Protocol string
 	Username string
 	Password string

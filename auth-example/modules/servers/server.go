@@ -36,7 +36,7 @@ func (s *Server) Start() {
 	}
 
 	host := s.Cfg.App.Host
-	port := s.Cfg.App.Post
+	port := s.Cfg.App.Port
 	log.Printf("server has been started on %s:%s ⚡️", host, port)
 
 	if err := s.App.Listen(fibrtConnURL); err != nil {

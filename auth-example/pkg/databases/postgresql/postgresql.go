@@ -11,7 +11,6 @@ import (
 
 func NewPostgreSQLDBConnection(cfg *configs.Configs) (*sqlx.DB, error) {
 	postgresUrl, err := utils.ConnectionUrlBuilder("postgresql", cfg)
-
 	if err != nil {
 		return nil, err
 	}
@@ -19,10 +18,10 @@ func NewPostgreSQLDBConnection(cfg *configs.Configs) (*sqlx.DB, error) {
 	db, err := sqlx.Connect("pgx", postgresUrl)
 	if err != nil {
 		defer db.Close()
-		log.Printf("error, con't connect to database, %s", err.Error())
+		log.Printf("error, can't connect to database, %s", err.Error())
 		return nil, err
 	}
 
-	log.Println("postgreSQL database has been connect 🐘")
+	log.Println("postgreSQL database has been connected 🐘")
 	return db, nil
 }
