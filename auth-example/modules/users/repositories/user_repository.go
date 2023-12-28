@@ -2,6 +2,7 @@ package repositories
 
 import (
 	"auth-example/modules/entities"
+	"errors"
 	"fmt"
 
 	"github.com/jmoiron/sqlx"
@@ -15,6 +16,23 @@ func NewUsersRepository(db *sqlx.DB) entities.UsersRepository {
 	return &userRepo{
 		Db: db,
 	}
+}
+
+func (r *userRepo) FindOneUser(username string) (*entities.UsersPassport, error) {
+	query := `SELECT
+	"id",
+	"username",
+	"password"
+	FROM "users"
+	WHERE "username" = $1`
+
+	res := new(entities.UsersPassport)
+	if err := r.Db.Get(res, query, username); err != nil {
+		fmt.Println(err.Error())
+		return nil, errors.New("error, user not found")
+	}
+	return res, nil
+
 }
 
 func (r *userRepo) Register(req *entities.UsersRegisterReq) (*entities.UsersRegisterRes, error) {
